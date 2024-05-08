@@ -1,13 +1,13 @@
 const asyncHandler = (requestHandler)=>{
-    (req,res,next)=>{
+    return (req,res,next)=>{
         Promise.resolve(requestHandler(req,res,next)).
-        catch((err)=> NodeList(err))
+        catch((err)=> next(err))
     }
 }
 
 
 export { asyncHandler }
-//@ Instead of promises we can praalso use try catch method
+//@ Instead of promises we can also use try catch method
 // const asyncHandler = (fn) => async (req,res,next) =>{
 //     try {
 //         await fn(req.res.next)
